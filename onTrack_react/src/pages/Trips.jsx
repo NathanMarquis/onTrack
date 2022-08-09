@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom"
+
 function Trips (){
     return (
         <div>
-            These are the trips!
+            <Link to={'/trips/create_trip'}>Create trip</Link>
         </div>
     )
 }

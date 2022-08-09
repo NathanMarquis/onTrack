@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom"
+
 function Login (){
     return (
         <div>
-            This is the Login!
+            <Link to={'/trips/create_account'}>Create account</Link>
         </div>
     )
 }
