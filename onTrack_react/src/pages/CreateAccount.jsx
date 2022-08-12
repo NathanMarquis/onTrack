@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 
-function CreateTrip (){
+function CreateAccount (){
     return (
         <div>
-            Create trip
+            Create account
         </div>
     )
 }
 
-export default CreateTrip
+export default CreateAccount

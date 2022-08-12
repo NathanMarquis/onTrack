@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 
-function CreateTrip (){
+function ViewTrip (){
     return (
         <div>
-            Create trip
+            Single trip
         </div>
     )
 }
 
-export default CreateTrip
+export default ViewTrip

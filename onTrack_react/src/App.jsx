@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react';
 import './App.css';
+import { useState, useEffect } from 'react';
+import {HashRouter as Router, Routes, Route} from 'react-router-dom'
 import NavigationBar from './components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios'
 import Homepage from './pages/Homepage';
 import Trips from './pages/Trips';
 import Login from './pages/Login';
-import {HashRouter as Router, Routes, Route} from 'react-router-dom'
-import axios from 'axios'
+import CreateAccount from './pages/CreateAccount';
+import CreateTrip from './pages/CreateTrip';
+import ViewTrip from './pages/ViewTrip';
 
 const getCSRFToken = ()=>{
   let csrfToken
@@ -67,6 +70,7 @@ function App() {
   useEffect(()=>{
     whoAmI()
   }, [])
+  
   return (
     <div className='Navbar'>
       <NavigationBar />
@@ -75,6 +79,7 @@ function App() {
           <Route path='/' element={<Homepage />} />
           <Route path='/trips' element={<Trips />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/createAccount' element={<CreateAccount />} />
         </Routes>
       </Router>
     </div>

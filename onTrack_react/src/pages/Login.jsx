@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 function Login (){
     return (
         <div>
-            <Link to={'/trips/create_account'}>Create account</Link>
+            <Link to={'/createaccount'}>Create account</Link>
         </div>
     )
 }

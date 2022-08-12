@@ -10,3 +10,8 @@ class AppUser(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+class Trip(models.Model):
+    email = models.Charfield(
+        max_length=255,
+    )
