@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import CreateTrip from './pages/CreateTrip';
 import ViewTrip from './pages/ViewTrip';
+import MapContainer from './components/MapContainer';
 
 const getCSRFToken = ()=>{
   let csrfToken
@@ -27,6 +28,9 @@ const getCSRFToken = ()=>{
 }
 console.log('token? ', getCSRFToken())
 axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
+
+//Key for google maps api from MapContaineer
+const mapkey = process.env.REACT_APP_API_KEY
 
 function App() {
   const [count, setCount] = useState(0)

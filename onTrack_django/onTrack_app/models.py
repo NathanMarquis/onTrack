@@ -12,6 +12,12 @@ class AppUser(AbstractUser):
     REQUIRED_FIELDS = []
 
 class Trip(models.Model):
-    email = models.Charfield(
+    map = models.Charfield(
+        max_length=255,
+    )
+    forecast = models.Charfield(
+        max_length=255,
+    )
+    supplies = models.Charfield(
         max_length=255,
     )
