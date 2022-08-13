@@ -66,7 +66,6 @@ function App() {
     // const user = response.data[0].fields
     console.log('user from whoami? ', user, response)
     setUser(user)
-    window.foo.bar.baz = 'error!'
   }
 
   useEffect(()=>{
@@ -75,14 +74,15 @@ function App() {
   
   return (
     <div className='Navbar'>
-      <h1>Hi</h1>
       <NavigationBar />
       <Router>
         <Routes> 
           <Route path='/' element={<Homepage />} />
           <Route path='/trips' element={<Trips />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/createAccount' element={<CreateAccount />} />
+          <Route path='/viewtrip' element={<ViewTrip />} />
+          <Route path='/createaccount' element={<CreateAccount />} />
+          <Route path='/createtrip' element={<CreateTrip />} />
         </Routes>
       </Router>
     </div>
