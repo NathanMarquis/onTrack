@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'onTrack_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'onTrackdb',
+        'NAME': 'ontrackdb',
     }
 }
 

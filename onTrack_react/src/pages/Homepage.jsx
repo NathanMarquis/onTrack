@@ -1,11 +1,11 @@
-import MapContainer from "../components/MapContainer"
+// import MapContainer from "../components/MapContainer"
 
 function Homepage (){
     return (
         <div>
             This is the homepage!
             <div>
-                <MapContainer/>
+                {/* <MapContainer/> */}
             </div>
         </div>
     )

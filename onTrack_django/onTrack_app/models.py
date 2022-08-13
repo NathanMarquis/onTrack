@@ -12,12 +12,13 @@ class AppUser(AbstractUser):
     REQUIRED_FIELDS = []
 
 class Trip(models.Model):
-    map = models.Charfield(
+    appuser = models.ForeignKey(AppUser, on_delete=models.CASCADE)
+    map = models.CharField(
+        max_length=255
+    )
+    forecast = models.CharField(
         max_length=255,
     )
-    forecast = models.Charfield(
-        max_length=255,
-    )
-    supplies = models.Charfield(
+    supplies = models.CharField(
         max_length=255,
     )

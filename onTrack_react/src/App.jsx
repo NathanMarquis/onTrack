@@ -10,7 +10,6 @@ import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import CreateTrip from './pages/CreateTrip';
 import ViewTrip from './pages/ViewTrip';
-import MapContainer from './components/MapContainer';
 
 const getCSRFToken = ()=>{
   let csrfToken
@@ -77,6 +76,7 @@ function App() {
   
   return (
     <div className='Navbar'>
+      <h1>Hi</h1>
       <NavigationBar />
       <Router>
         <Routes> 
