@@ -29,10 +29,9 @@ console.log('token? ', getCSRFToken())
 axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
 
 //Key for google maps api from MapContaineer
-const mapkey = process.env.REACT_APP_API_KEY
+// const mapkey = process.env.REACT_APP_API_KEY
 
 function App() {
-  const [count, setCount] = useState(0)
   const [user, setUser] = useState(null)
 
   const submitSignupForm = function(event){

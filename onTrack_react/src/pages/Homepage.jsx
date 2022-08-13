@@ -1,4 +1,4 @@
-// import MapContainer from "../components/MapContainer"
+// import MapContainer from "../components/mapContainer"
 
 function Homepage (){
     return (
