@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
+// import mapContainer from "../components/mapContainer"
 
 function ViewTrip (){
     return (
         <div>
-            Single trip
+            Hi
+            {/* {mapContainer} */}
         </div>
     )
 }

@@ -1,25 +1,55 @@
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import submitLoginForm from '../App';
 
 function Login() {
+  const [user, setUser] = useState(null)
+
+  
+
+  
+
+  const submitLoginForm = function(event){
+    // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
+    event.preventDefault()
+    axios.post('/login', {email: 'jeff@amazon.com', password:'dragons'}).then((response)=>{
+      console.log('response from server: ', response)
+      window.location.reload()
+    })
+  }
+  
+  // const logOut = function(event){
+  //   // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
+  //   event.preventDefault()
+  //   axios.post('/logout').then((response)=>{
+  //     console.log('response from server: ', response)
+  //     whoAmI()
+  //   })
+  // }
+
+  const whoAmI = async () => {
+    const response = await axios.get('http://127.0.0.1:8000/whoami/')
+    const user = response.data && response.data[0] && response.data[0].fields
+    // const user = response.data[0].fields
+    console.log('user from whoami? ', user, response)
+    setUser(user)
+  }
+
+  useEffect(()=>{
+    whoAmI()
+  }, [])
   return (
     <div>
-      <Form>
+      <Form onSubmit={submitLoginForm}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit

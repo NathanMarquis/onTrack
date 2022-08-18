@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   // vite uses this as a prefix for href and src URLs
-  base: "/",
+  base: "/static/",
   build: {
     // this is the folder where vite will generate its output. Make sure django can serve files from here!
     outDir: "../onTrack_django/static",

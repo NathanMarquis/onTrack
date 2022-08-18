@@ -25,52 +25,14 @@ const getCSRFToken = ()=>{
   }
   return csrfToken
 }
-console.log('token? ', getCSRFToken())
-axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
 
 //Key for google maps api from MapContaineer
 // const mapkey = process.env.REACT_APP_API_KEY
 
 function App() {
-  const [user, setUser] = useState(null)
-
-  const submitSignupForm = function(event){
-    // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
-    event.preventDefault()
-    axios.post('/signup', {email: 'jeff@amazon.com', password:'dragons'}).then((response)=>{
-      console.log('response from server: ', response)
-    })
-  }
-
-  const submitLoginForm = function(event){
-    // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
-    event.preventDefault()
-    axios.post('/login', {email: 'jeff@amazon.com', password:'dragons'}).then((response)=>{
-      console.log('response from server: ', response)
-      window.location.reload()
-    })
-  }
   
-  const logOut = function(event){
-    // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
-    event.preventDefault()
-    axios.post('/logout').then((response)=>{
-      console.log('response from server: ', response)
-      whoAmI()
-    })
-  }
-
-  const whoAmI = async () => {
-    const response = await axios.get('/whoami')
-    const user = response.data && response.data[0] && response.data[0].fields
-    // const user = response.data[0].fields
-    console.log('user from whoami? ', user, response)
-    setUser(user)
-  }
-
-  useEffect(()=>{
-    whoAmI()
-  }, [])
+  console.log('token? ', getCSRFToken())
+  axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
   
   return (
     <div className='Navbar'>
