@@ -6,9 +6,10 @@ import axios from "axios";
 function CreateAccount (){
   console.log('Creating account')
   const submitSignupForm = function(event){
-    // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
     event.preventDefault()
-    axios.post('/signup', {email: 'jeff@amazon.com', password:'dragons'}).then((response)=>{
+    let email = event.target[0].value
+    let password = event.target[1].value
+    axios.post('/signup', {email: email, password: password}).then((response)=>{
       console.log('response from server: ', response)
     })
   }

@@ -15,6 +15,7 @@ function Login() {
   const submitLoginForm = function(event){
     // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
     event.preventDefault()
+    console.log(event)
     axios.post('/login', {email: 'jeff@amazon.com', password:'dragons'}).then((response)=>{
       console.log('response from server: ', response)
       window.location.reload()
