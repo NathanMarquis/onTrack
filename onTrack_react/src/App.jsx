@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import React, {Component, useState, useEffect } from 'react';
 import {HashRouter as Router, Routes, Route} from 'react-router-dom'
 import NavigationBar from './components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';

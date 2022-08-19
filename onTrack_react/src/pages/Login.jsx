@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import submitLoginForm from '../App';
+import React, {Component, useState, useEffect } from 'react';
+import axios from 'axios'
 
 function Login() {
   const [user, setUser] = useState(null)
@@ -29,7 +31,7 @@ function Login() {
   // }
 
   const whoAmI = async () => {
-    const response = await axios.get('http://127.0.0.1:8000/whoami/')
+    const response = await axios.get('/whoami')
     const user = response.data && response.data[0] && response.data[0].fields
     // const user = response.data[0].fields
     console.log('user from whoami? ', user, response)
