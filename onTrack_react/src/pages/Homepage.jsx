@@ -1,11 +1,11 @@
-// import MapContainer from "../components/mapContainer"
+
 
 function Homepage (){
     return (
         <div>
             This is the homepage!
             <div>
-                {/* <MapContainer/> */}
+                Hi
             </div>
         </div>
     )

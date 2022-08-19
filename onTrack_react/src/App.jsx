@@ -12,7 +12,7 @@ import CreateTrip from './pages/CreateTrip';
 import ViewTrip from './pages/ViewTrip';
 
 const getCSRFToken = ()=>{
-  let csrfToken
+  let csrfToken = 'no-csrf-token'
 
   // the browser's cookies for this page are all in one string, separated by semi-colons
   const cookies = document.cookie.split(';')
@@ -31,8 +31,8 @@ const getCSRFToken = ()=>{
 
 function App() {
   
-  console.log('token? ', getCSRFToken())
-  axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
+  // console.log('token? ', getCSRFToken())
+  // axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
   
   return (
     <div className='Navbar'>

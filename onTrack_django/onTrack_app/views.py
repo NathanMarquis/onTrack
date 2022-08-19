@@ -17,7 +17,7 @@ def sign_up(request):
         User.objects.create_user(username=request.data['email'], password=request.data['password'], email=request.data['email'])
     except Exception as e:
         print(str(e))
-    return HttpResponse('hi')
+    return HttpResponse('User created')
 
 @api_view(['POST'])
 def log_in(request):

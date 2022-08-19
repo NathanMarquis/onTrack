@@ -31,6 +31,7 @@ function Login() {
   // }
 
   const whoAmI = async () => {
+    console.log('Trying whoami')
     const response = await axios.get('/whoami')
     const user = response.data && response.data[0] && response.data[0].fields
     // const user = response.data[0].fields
