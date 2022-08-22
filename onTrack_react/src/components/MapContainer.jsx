@@ -1,44 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+// const mapkey = 'AIzaSyCh2j8eK3Hl0IKuSS9DOmXUixpRTEc7gsk'
 
-const mapkey = 'AIzaSyCh2j8eK3Hl0IKuSS9DOmXUixpRTEc7gsk'
+import React from 'react'
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
-const MapContainer = () => {
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
 
-  const mapStyles = {
-    height: "50vh",
-    width: "100%",
-    display: "flex"
-  };
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
 
-  const defaultCenter = {
-    lat: 32.4228638826,
-    lng: -99.8391523672
-  }
-
-  const [currentPosition, setCurrentPosition] = useState(null);
-
-  const success = position => {
-    const currentPosition = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    }
-    setCurrentPosition(currentPosition);
-  };
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success);
-  }, [])
-
+function MapComponent() {
   return (
     <LoadScript
-      googleMapsApiKey={mapkey}>
+      googleMapsApiKey="AIzaSyCh2j8eK3Hl0IKuSS9DOmXUixpRTEc7gsk"
+    >
       <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={13}
-        center={currentPosition || defaultCenter}>
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
       </GoogleMap>
     </LoadScript>
   )
 }
-export default MapContainer;
+
+export default React.memo(MapComponent)

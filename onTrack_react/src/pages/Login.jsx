@@ -1,65 +1,87 @@
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import submitLoginForm from '../App';
-import React, {Component, useState, useEffect } from 'react';
-import axios from 'axios'
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import React, { Component, useState, useEffect } from "react";
+import axios from "axios";
+
+// axios.defaults.xsrfCookieName = 'csrftoken'
+// axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
+const getCSRFToken = () => {
+  let csrfToken
+
+  // the browser's cookies for this page are all in one string, separated by semi-colons
+  const cookies = document.cookie.split(";");
+  for (let cookie of cookies) {
+    // individual cookies have their key and value separated by an equal sign
+    const crumbs = cookie.split("=");
+    if (crumbs[0].trim() === "csrftoken") {
+      csrfToken = crumbs[1];
+    } else{
+      console.log('no tokens!!!')
+    }
+  }
+  return csrfToken;
+};
+console.log('token? ', getCSRFToken())
+axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
 
 function Login() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
-  
+  const submitLoginForm = function (event) {
+    // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
+    event.preventDefault();
+    console.log(event);
+    let email = event.target[0].value;
+    let password = event.target[1].value;
+    axios.post("/login", { email: email, password: password })
+      .then((response) => {
+        console.log("response from server: ", response);
+        window.location.reload();
+        document.getElementById('tripLink').disabled = false;
+      });
+  };
 
-  
-
-  const submitLoginForm = function(event){
+  const logOut = function(event){
     // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
     event.preventDefault()
-    console.log(event)
-    axios.post('/login', {email: 'jeff@amazon.com', password:'dragons'}).then((response)=>{
+    axios.post('/logout').then((response)=>{
       console.log('response from server: ', response)
-      window.location.reload()
+      whoAmI()
     })
   }
-  
-  // const logOut = function(event){
-  //   // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
-  //   event.preventDefault()
-  //   axios.post('/logout').then((response)=>{
-  //     console.log('response from server: ', response)
-  //     whoAmI()
-  //   })
-  // }
 
   const whoAmI = async () => {
-    console.log('Trying whoami')
-    const response = await axios.get('/whoami')
-    const user = response.data && response.data[0] && response.data[0].fields
+    console.log("Trying whoami");
+    const response = await axios.get("/whoami");
+    const user = response.data && response.data[0] && response.data[0].fields;
     // const user = response.data[0].fields
-    console.log('user from whoami? ', user, response)
-    setUser(user)
-  }
+    console.log("user from whoami? ", user, response);
+    setUser(user);
+  };
 
-  useEffect(()=>{
-    whoAmI()
-  }, [])
+  useEffect(() => {
+    whoAmI();
+  }, []);
   return (
     <div>
-      <Form onSubmit={submitLoginForm}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-      <Link to={"/createaccount"}>Create account</Link>
+      <div className="d-flex justify-content-center py-2">
+        <Form className="w-25" onSubmit={submitLoginForm}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label className="text-white">Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label className="text-white">Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+          <Button variant="light" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
+      <Link className="text-white" to={"/createaccount"}>Create account</Link>
     </div>
   );
 }

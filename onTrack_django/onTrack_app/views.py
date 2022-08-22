@@ -4,13 +4,15 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view
 from .models import AppUser as User
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
     print('home')
     theIndex = open('static/index.html').read()
     return HttpResponse(theIndex)
-    
+
+@csrf_exempt  
 @api_view(['POST'])
 def sign_up(request):
     try:
@@ -19,6 +21,7 @@ def sign_up(request):
         print(str(e))
     return HttpResponse('User created')
 
+@csrf_exempt
 @api_view(['POST'])
 def log_in(request):
     print(dir(request))
@@ -50,14 +53,11 @@ def log_in(request):
         return HttpResponse('no user!')
         # Return an 'invalid login' error message.
 
-
+@csrf_exempt
 @api_view(['POST'])
 def log_out(request):
     logout(request)
     return JsonResponse({'success':True})
-
-
-
 
 @api_view(['GET'])
 def who_am_i(request):

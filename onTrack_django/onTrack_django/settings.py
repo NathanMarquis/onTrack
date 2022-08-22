@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure--u$99_2=yp=fyrkh#3wa)i+08x5b6)lfbs*l-bkism*#vlnyqr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = ['https://api.weather.gov/gridpoints']
 
 
 # Application definition
