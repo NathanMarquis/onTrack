@@ -5,6 +5,9 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view
 from .models import AppUser as User
 from django.views.decorators.csrf import csrf_exempt
+from urllib import response
+import requests
+import json
 
 
 def index(request):
@@ -69,3 +72,15 @@ def who_am_i(request):
         return HttpResponse(data)
     else:
         return JsonResponse({'user':None})
+
+@api_view(['GET'])
+def weather_update(request):
+    latitude = '41.8781'
+    longitude = '-87.6298'
+    endpoint = f"https://api.weather.gov/points/{latitude},{longitude}"
+    API_response = requests.get(endpoint)
+
+    print(API_response)
+
+    responseJSON = API_response.json()
+    return JsonResponse({'success': responseJSON})

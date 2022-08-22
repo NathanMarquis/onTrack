@@ -16,7 +16,9 @@ function Trips() {
       <Link className="text-white" to={"/createtrip"}>
         Create trip
       </Link>
+      <div className="mapBox">
       <MapComponent/>
+      </div>
     </div>
   );
 }
