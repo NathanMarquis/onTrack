@@ -80,7 +80,8 @@ def weather_update(request):
     endpoint = f"https://api.weather.gov/points/{latitude},{longitude}"
     API_response = requests.get(endpoint)
 
-    print(API_response)
-
     responseJSON = API_response.json()
+
+    print(responseJSON['properties'])
+
     return JsonResponse({'success': responseJSON})
