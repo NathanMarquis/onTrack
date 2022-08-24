@@ -19,7 +19,7 @@ class Trip(models.Model):
     
 class Map(models.Model):
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
-    coordinates = models.CharField(
+    center = models.CharField(
         max_length=255
     )
     points = models.CharField(
@@ -31,4 +31,3 @@ class Supplies(models.Model):
     item = models.CharField(
         max_length=255
     )
-    

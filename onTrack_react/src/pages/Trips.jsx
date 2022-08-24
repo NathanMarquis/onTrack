@@ -19,6 +19,9 @@ function Trips() {
       <div className="mapBox">
       <MapComponent/>
       </div>
+      <div>
+        hi
+      </div>
     </div>
   );
 }

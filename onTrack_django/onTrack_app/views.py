@@ -82,9 +82,9 @@ def weather_update(request):
     API_response = requests.get(endpoint)
     # 7day forecast info
     responseJSON = API_response.json()['properties']['periods']
+    data = []
     for item in responseJSON:
         if 'isDaytime' == True:
-            print('Works')
-
-
+            data.append(item)
+    print(data)
     return JsonResponse({'success': responseJSON})
