@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import React, { Component, useState, useEffect } from "react";
@@ -26,9 +26,10 @@ const getCSRFToken = () => {
 console.log('token? ', getCSRFToken())
 axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
 
-function Login() {
-  const [user, setUser] = useState(null);
+function Login({user, whoAmI}) {
+  
 
+  let navigate = useNavigate();
   const submitLoginForm = function (event) {
     // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
     event.preventDefault();
@@ -38,32 +39,12 @@ function Login() {
     axios.post("/login", { email: email, password: password })
       .then((response) => {
         console.log("response from server: ", response);
-        window.location.reload();
-        document.getElementById('tripLink').disabled = false;
+        whoAmI()
+        navigate('/trips')
+        window.location.reload()
       });
   };
 
-  const logOut = function(event){
-    // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
-    event.preventDefault()
-    axios.post('/logout').then((response)=>{
-      console.log('response from server: ', response)
-      whoAmI()
-    })
-  }
-
-  const whoAmI = async () => {
-    console.log("Trying whoami");
-    const response = await axios.get("/whoami");
-    const user = response.data && response.data[0] && response.data[0].fields;
-    // const user = response.data[0].fields
-    console.log("user from whoami? ", user, response);
-    setUser(user);
-  };
-
-  useEffect(() => {
-    whoAmI();
-  }, []);
   return (
     <div>
       <div className="d-flex justify-content-center py-2">

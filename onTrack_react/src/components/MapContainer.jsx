@@ -43,8 +43,8 @@ const MapComponent = () => {
   }, []);
 
   const mapContainerStyle = {
-    width: "30vw",
-    height: "60vh"
+    width: "500px",
+    height: "500px",
   };
 
   const showPath = () => {
@@ -55,7 +55,7 @@ const MapComponent = () => {
     googleMapsApiKey: "AIzaSyCh2j8eK3Hl0IKuSS9DOmXUixpRTEc7gsk"
   });
 
-  const centre = { lat: 41.8781, lng: -87.6298 };
+  const center = { lat: 41.8781, lng: -87.6298 };
 
   if (loadError) return "Error loading Google Map";
   if (!isLoaded) return "Loading Maps....";
@@ -65,7 +65,7 @@ const MapComponent = () => {
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}
-        center={centre}
+        center={center}
       >
         <Polyline
           ref={polylineRef}

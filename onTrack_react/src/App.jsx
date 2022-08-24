@@ -15,17 +15,33 @@ import ViewTrip from "./pages/ViewTrip";
 // const mapkey = process.env.REACT_APP_API_KEY
 
 function App() {
+  const [user, setUser] = useState(null);
+  // use the user state if null to disable button 
+
+  const whoAmI = async () => {
+    console.log("Trying whoami");
+    const response = await axios.get("/whoami");
+    const user = response.data && response.data[0] && response.data[0].fields;
+    // const user = response.data[0].fields
+    console.log("user from whoami? ", user, response);
+    setUser(user);
+  };
+
+  useEffect(() => {
+    whoAmI();
+  }, []);
+  // only renders first time page loads because nothing in brackets, whatever state is in brackets determines if function executed again
 
   return (
     <div w-75>
-      <div className="d-flex navbar justify-content-center">
-      <NavigationBar />
-      </div>
       <Router>
+      <div className="d-flex navbar justify-content-center">
+        <NavigationBar user={user} whoAmI={whoAmI} />
+      </div>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/trips" element={<Trips />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login user={user} whoAmI={whoAmI}/>} />
           <Route path="/viewtrip" element={<ViewTrip />} />
           <Route path="/createaccount" element={<CreateAccount />} />
           <Route path="/createtrip" element={<CreateTrip />} />
