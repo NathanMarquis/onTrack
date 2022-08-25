@@ -9,4 +9,5 @@ urlpatterns = [
     path('whoami', views.who_am_i),
     path('weatherupdate', views.weather_update),
     path('mapupdate', views.map_update),
+    path('addsupplies', views.add_supplies),
 ]

@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
 function CreateAccount() {
+  let navigate = useNavigate()
   console.log("Creating account");
   const submitSignupForm = function (event) {
     event.preventDefault();
@@ -13,6 +14,7 @@ function CreateAccount() {
       .post("/signup", { email: email, password: password })
       .then((response) => {
         console.log("response from server: ", response);
+        navigate('/login')
       });
   };
   return (

@@ -8,7 +8,6 @@ import Homepage from "./pages/Homepage";
 import Trips from "./pages/Trips";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
-import CreateTrip from "./pages/CreateTrip";
 import ViewTrip from "./pages/ViewTrip";
 
 //Key for google maps api from MapContaineer
@@ -44,7 +43,6 @@ function App() {
           <Route path="/login" element={<Login user={user} whoAmI={whoAmI}/>} />
           <Route path="/viewtrip" element={<ViewTrip />} />
           <Route path="/createaccount" element={<CreateAccount />} />
-          <Route path="/createtrip" element={<CreateTrip />} />
         </Routes>
       </Router>
     </div>

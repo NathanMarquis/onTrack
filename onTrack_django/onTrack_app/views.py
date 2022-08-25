@@ -80,21 +80,16 @@ def who_am_i(request):
 
 @api_view(['GET'])
 def weather_update(request):
-    latitude = '41.8781'
-    longitude = '-87.6298'
+    trip = Trip.objects.get(appuser = request.user)
+    print(trip.center)
     # first it uses coordinates, then links to fetch grid forecast
-    endpoint = f"https://api.weather.gov/points/{latitude},{longitude}"
+    endpoint = f"https://api.weather.gov/points/{trip.center['lat']},{trip.center['lng']}"
     API_response = requests.get(endpoint)
     responseJSON = API_response.json()
     endpoint = responseJSON['properties']['forecast']
     API_response = requests.get(endpoint)
     # 7day forecast info
     responseJSON = API_response.json()['properties']['periods']
-    data = []
-    for item in responseJSON:
-        if 'isDaytime' == True:
-            data.append(item)
-    print(data)
     return JsonResponse({'success': responseJSON})
 
 @api_view(['POST'])
@@ -102,3 +97,8 @@ def map_update(request):
     trip = Trip.objects.get(appuser = request.user)
 
     return JsonResponse({'success': 'trip updated'})
+
+@api_view(['POST'])
+def add_supplies(request):
+
+    return JsonResponse({'success': 'added supplies'})

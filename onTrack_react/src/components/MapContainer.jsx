@@ -47,7 +47,9 @@ const MapComponent = () => {
     width: "500px",
     height: "500px",
   };
-
+  
+  const center = { lat: 41.8781, lng: -87.6298 };
+  
   const sharePath = () => {
     console.log(path); //What should be here to show the edited path if its possible to access?
     axios
@@ -61,7 +63,6 @@ const MapComponent = () => {
     googleMapsApiKey: "AIzaSyCh2j8eK3Hl0IKuSS9DOmXUixpRTEc7gsk",
   });
 
-  const center = { lat: 41.8781, lng: -87.6298 };
 
   if (loadError) return "Error loading Google Map";
   if (!isLoaded) return "Loading Maps....";

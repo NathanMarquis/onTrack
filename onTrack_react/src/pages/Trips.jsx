@@ -5,9 +5,6 @@ import WeatherBar from "../components/weatherBar";
 function Trips() {
   return (
     <div>
-      <Link className="text-white" to={"/createtrip"}>
-        Create trip
-      </Link>
       <div className="mapBox">
       <MapComponent/>
       </div>
