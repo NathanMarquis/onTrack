@@ -1,14 +1,6 @@
 import { Link } from "react-router-dom";
 import MapComponent from "../components/mapContainer";
-// import { MapContainer, TileLayer, useMap } from "react-leaflet";
-// import { Marker, Popup } from "react-leaflet";
-
-// function MyComponent() {
-//   const map = useMap();
-//   console.log("map center:", map.getCenter());
-//   return null;
-// }
-
+import WeatherBar from "../components/weatherBar";
 
 function Trips() {
   return (
@@ -20,7 +12,7 @@ function Trips() {
       <MapComponent/>
       </div>
       <div>
-        hi
+        <WeatherBar/>
       </div>
     </div>
   );

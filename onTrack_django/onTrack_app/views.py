@@ -3,7 +3,7 @@ from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view
-from .models import AppUser as User
+from .models import AppUser as User, Trip
 from django.views.decorators.csrf import csrf_exempt
 from urllib import response
 import requests
@@ -17,11 +17,19 @@ def index(request):
 
 @api_view(['POST'])
 def sign_up(request):
+    center = { 'lat': 41.8781, 'lng': -87.6298 }
+    points = [
+    { 'lat': 41.8781, 'lng': -87.6298 },
+    { 'lat': 41.8981, 'lng': -87.6398 },
+  ]
     try:
         User.objects.create_user(username=request.data['email'], password=request.data['password'], email=request.data['email'])
+        user = User.objects.get(username=request.data['email'])
+        trip = Trip(center=center, points=points, appuser=user)
+        trip.save()
+        return HttpResponse('User created')
     except Exception as e:
         print(str(e))
-    return HttpResponse('User created')
 
 @api_view(['POST'])
 def user_login(request):
@@ -88,3 +96,9 @@ def weather_update(request):
             data.append(item)
     print(data)
     return JsonResponse({'success': responseJSON})
+
+@api_view(['POST'])
+def map_update(request):
+    trip = Trip.objects.get(appuser = request.user)
+
+    return JsonResponse({'success': 'trip updated'})

@@ -8,4 +8,5 @@ urlpatterns = [
     path('logout', views.user_logout),
     path('whoami', views.who_am_i),
     path('weatherupdate', views.weather_update),
+    path('mapupdate', views.map_update),
 ]

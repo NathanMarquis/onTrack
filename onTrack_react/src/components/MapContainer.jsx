@@ -1,14 +1,15 @@
 // const mapkey = 'AIzaSyCh2j8eK3Hl0IKuSS9DOmXUixpRTEc7gsk'
 
-import React, { Fragment, useCallback, useRef, useState } from "react";
+import { Fragment, useCallback, useRef, useState, useEffect } from "react";
 import { GoogleMap, Polyline, useLoadScript } from "@react-google-maps/api";
+import axios from "axios";
 
 const MapComponent = () => {
   const polylineRef = useRef(null);
   const listenersRef = useRef([]);
   const [path, setPath] = useState([
     { lat: 41.8781, lng: -87.6298 },
-    { lat: 41.8981, lng: -87.6398 }
+    { lat: 41.8981, lng: -87.6398 },
   ]);
 
   // Call setPath with new edited path
@@ -47,12 +48,17 @@ const MapComponent = () => {
     height: "500px",
   };
 
-  const showPath = () => {
+  const sharePath = () => {
     console.log(path); //What should be here to show the edited path if its possible to access?
+    axios
+    .post("/mapupdate", { center: center, points: path })
+    .then((response) => {
+      console.log("update response: ", response);
+    });
   };
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCh2j8eK3Hl0IKuSS9DOmXUixpRTEc7gsk"
+    googleMapsApiKey: "AIzaSyCh2j8eK3Hl0IKuSS9DOmXUixpRTEc7gsk",
   });
 
   const center = { lat: 41.8781, lng: -87.6298 };
@@ -77,7 +83,7 @@ const MapComponent = () => {
           onUnmount={onUnmount}
         />
       </GoogleMap>
-      <button onClick={showPath}>Save path</button>
+      <button onClick={sharePath}>Save path</button>
     </Fragment>
   );
 };

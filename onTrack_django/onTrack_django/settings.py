@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'onTrack_app',
+    'ontrack_app',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +84,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'onTrack_app.AppUser'
+AUTH_USER_MODEL = 'ontrack_app.AppUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

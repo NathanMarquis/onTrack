@@ -17,5 +17,5 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('onTrack_app.urls')),
+    path('', include('ontrack_app.urls')),
 ]
