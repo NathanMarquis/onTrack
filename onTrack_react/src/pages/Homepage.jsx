@@ -2,16 +2,16 @@ function Homepage() {
   return (
     <div className="container mx-1">
       <div className="row">
-        <div className="col-8 text-white">Check weather during your planned trip</div>
-        <div className="col-4">Sample weather</div>
+        <h3 className="col-8 text-white">Check weather during your planned trip</h3>
+        <h3 className="col-4">Sample weather</h3>
       </div>
       <div className="row">
-        <div className="col-8 text-white">Make a list of supplies to track</div>
-        <div className="col-4">Sample supplies</div>
+        <h3 className="col-8 text-white">Make a list of supplies to track</h3>
+        <h3 className="col-4">Sample supplies</h3>
       </div>
       <div className="row">
-        <div className="col-8 text-white">Create a route to reach your destination</div>
-        <div className="col-4">Sample map</div>
+        <h3 className="col-8 text-white">Create a route to reach your destination</h3>
+        <h3 className="col-4">Sample map</h3>
       </div>
     </div>
   );

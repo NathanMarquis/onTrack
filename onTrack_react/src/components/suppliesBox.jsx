@@ -6,6 +6,7 @@ import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 
 function Supplies() {
+  const supplies = []
   
   const addSupplies = function (event) {
     // this isn't actually necessary, since this isn't in a form. but if it WAS a form, we'd need to prevent default.
@@ -13,13 +14,12 @@ function Supplies() {
     console.log(event);
     // let email = event.target[0].value;
     // let password = event.target[1].value;
-    axios.post("/addsupplies", { email: email, password: password })
+    axios.post("/addsupplies", { item })
       .then((response) => {
         console.log("response from server: ", response);
       });
   };
 
-  const supplies = []
   for (item in supplies) {
     supplies.push(<div className="supplyBox"/>)
   }
