@@ -80,7 +80,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ontrackdb',
-        'PASSWORD': '8512',
     }
 }
 
